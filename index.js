@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import "dotenv/config";
 
 import { OpenAIEmbeddings } from "@langchain/openai";
 import chalk from "chalk";
@@ -14,7 +15,7 @@ import OpenAI from "openai";
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 
 const openai = new OpenAI({
-  apiKey: "sk-proj-xIlRFw1VS4JW9r3c0K7kT3BlbkFJplJGrP7DHZiZIhvhi58E" || "",
+  apiKey: process.env.OPENAI_API_KEY || "",
 });
 
 // method -> [prompt/path , systemrole]
@@ -27,13 +28,13 @@ let mapOfMethods = new Map([
       "You are a helpful assistant that answers to a given text.",
     ],
   ],
-  [
-    "Add a PDF to Vector Database",
-    [
-      "Please provide the Path to the PDF.",
-      "You are a helpful assistant that answers to a given text.",
-    ],
-  ],
+  //   [
+  //     "Add a PDF to Vector Database",
+  //     [
+  //       "Please provide the Path to the PDF.",
+  //       "You are a helpful assistant that answers to a given text.",
+  //     ],
+  //   ],
   ["List all PDFs", fs.readFileSync("pdfs.txt").toString().split("\n")],
   ["Exit", []],
 ]);
@@ -98,7 +99,7 @@ async function chatCompletionFromDocument(pathToPDF, prompt) {
   const vectorStore = await MemoryVectorStore.fromDocuments(
     allSplits,
     new OpenAIEmbeddings({
-      apiKey: "sk-proj-xIlRFw1VS4JW9r3c0K7kT3BlbkFJplJGrP7DHZiZIhvhi58E" || "",
+      apiKey: process.env.OPENAI_API_KEY || "",
     })
   );
   const retriever = vectorStore.asRetriever({
@@ -144,5 +145,5 @@ while (method !== "Exit") {
 }
 
 figlet("Danke!", (err, data) => {
-    console.log(gradient.fruit(data));
-  });
+  console.log(gradient.fruit(data));
+});
