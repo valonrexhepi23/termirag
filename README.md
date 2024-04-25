@@ -1,4 +1,6 @@
 # TermiRAG
+<img width="488" alt="Screenshot 2024-04-25 at 23 37 39" src="https://github.com/valonrexhepi23/termirag/assets/92568217/ededa9a9-4ada-4774-bbbb-1580cbc40c64">
+
 ## Create a little `ASK YOUR PDF` within your terminal.
 ### Prerequisites
 Before you can run TermiRAG, ensure you have the following installed:
