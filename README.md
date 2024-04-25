@@ -5,7 +5,7 @@
 ### Prerequisites
 Before you can run TermiRAG, ensure you have the following installed:
 
-- Node.JS (v20.09)
+- [Node.JS (v20.09)](https://nodejs.org/en/download)
 - npm (Node Package Manager)
 
 ### Installation
@@ -32,6 +32,12 @@ OPENAI_API_KEY=YourAPIKEY
 And replace it with an actual API KEY.
 
 ### Usage
+You can add PDF-Files inside the folder or you can specifiy the path in
+```
+37:   ["List all PDFs", fs.readdirSync('./').filter(filter => filter.match('.pdf'))],
+```
+<img width="223" alt="Screenshot 2024-04-25 at 23 42 09" src="https://github.com/valonrexhepi23/termirag/assets/92568217/d3bb8aa5-4914-419f-b67f-4212630342ea">
+
 Run the application using:
 ```
 node app.js
