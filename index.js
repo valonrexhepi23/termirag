@@ -144,6 +144,6 @@ while (method !== "Exit") {
   console.log();
 }
 
-figlet("Danke!", (err, data) => {
+figlet("Thanks!", (err, data) => {
   console.log(gradient.fruit(data));
 });
