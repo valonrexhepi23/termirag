@@ -17,7 +17,6 @@ const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
 });
-
 // method -> [prompt/path , systemrole]
 let mapOfMethods = new Map([
   [
@@ -35,7 +34,7 @@ let mapOfMethods = new Map([
   //       "You are a helpful assistant that answers to a given text.",
   //     ],
   //   ],
-  ["List all PDFs", fs.readFileSync("pdfs.txt").toString().split("\n")],
+  ["List all PDFs", fs.readdirSync('./').filter(filter => filter.match('.pdf'))],
   ["Exit", []],
 ]);
 
