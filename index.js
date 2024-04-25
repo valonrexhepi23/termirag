@@ -13,12 +13,11 @@ import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import OpenAI from "openai";
 
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
-
+const folderPath = './'
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
 });
-// method -> [prompt/path , systemrole]
-let mapOfMethods = new Map([
+const mapOfMethods = new Map([
   [
     "Ask Me Anything",
     [
@@ -27,14 +26,7 @@ let mapOfMethods = new Map([
       "You are a helpful assistant that answers to a given text.",
     ],
   ],
-  //   [
-  //     "Add a PDF to Vector Database",
-  //     [
-  //       "Please provide the Path to the PDF.",
-  //       "You are a helpful assistant that answers to a given text.",
-  //     ],
-  //   ],
-  ["List all PDFs", fs.readdirSync('./').filter(filter => filter.match('.pdf'))],
+  ["List all PDFs", fs.readdirSync(folderPath).filter(filter => filter.match('.pdf'))],
   ["Exit", []],
 ]);
 
@@ -85,10 +77,11 @@ async function chatCompletion(prompt, context, method) {
     if (part && part.choices && part.choices[0].delta.content)
       process.stdout.write(part.choices[0].delta.content);
   }
+  console.log();
 }
 
-async function chatCompletionFromDocument(pathToPDF, prompt) {
-  const loader = new PDFLoader(pathToPDF);
+async function chatCompletionFromDocument(pdfName, prompt) {
+  const loader = new PDFLoader(folderPath + pdfName);
   const docs = await loader.load();
   const textSplitter = new RecursiveCharacterTextSplitter({
     chunkSize: 1000,
