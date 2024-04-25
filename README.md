@@ -35,7 +35,6 @@ And replace it with an actual API KEY.
 You can add PDF-Files inside the folder or you can specifiy the path in
 ```
 16:  const folderPath = './'
-
 ```
 <img width="223" alt="Screenshot 2024-04-25 at 23 42 09" src="https://github.com/valonrexhepi23/termirag/assets/92568217/d3bb8aa5-4914-419f-b67f-4212630342ea">
 
